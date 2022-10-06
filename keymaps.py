@@ -8,9 +8,9 @@ def create_keys(mod, terminal, browser, groups):
         Key(['mod1'], 'Shift_L', lazy.widget["keyboardlayout"].next_keyboard(), desc="Next keyboard layout."),
         # Key('A-S', lazy.widget["keyboardlayout"].next_keyboard(), desc="Next keyboard layout."),
         # Launch programs
-        Key([mod, "shift"], "m", lazy.spawn(terminal), desc="Launch terminal"),
-        Key([mod, "shift"], "b", lazy.spawn(browser), desc="Launch browser"),
-        Key([mod, "shift"], "z", lazy.spawn(terminal + " -e nnn"), desc="Launch file manager"),
+        Key([mod], "return", lazy.spawn(terminal), desc="Launch terminal"),
+        Key([mod], "b", lazy.spawn(browser), desc="Launch browser"),
+        Key([mod], "f", lazy.spawn(terminal + " -e nnn"), desc="Launch file manager"),
         # Switch between windows
         Key([mod], "h", lazy.layout.left(), desc="Move focus to left"),
         Key([mod], "l", lazy.layout.right(), desc="Move focus to right"),
@@ -50,7 +50,7 @@ def create_keys(mod, terminal, browser, groups):
         ),
         # Toggle between different layouts as defined below
         Key([mod], "space", lazy.next_layout(), desc="Toggle between layouts"),
-        Key([mod], "x", lazy.window.kill(), desc="Kill focused window"),
+        Key([mod], "c", lazy.window.kill(), desc="Kill focused window"),
         Key([mod, "control"], "r", lazy.reload_config(), desc="Reload the config"),
         Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
         Key([mod], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
