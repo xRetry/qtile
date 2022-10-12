@@ -67,9 +67,14 @@ def create_widgets(font, colors, terminal):
         widget.Net(
             font = font,
             foreground = colors.fg1,
-            background = colors.bg4,
-            interface='enp3s0',
+            background = colors.bg2,
+            interface='wlo1',
             format='{up} UD {down} '
+        ),
+        widget.Battery(
+            foreground = colors.fg1,
+            background = colors.bg4,
+            format = ' B{percent:2.0%} '
         ),
         widget.CPU(
             font = font,
