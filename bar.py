@@ -69,31 +69,31 @@ def create_widgets(font, colors, terminal):
             foreground = colors.fg1,
             background = colors.bg2,
             interface='wlo1',
-            format='{up} UD {down} '
+            format='{up} [UD] {down} '
         ),
         widget.Battery(
             foreground = colors.fg1,
             background = colors.bg4,
-            format = ' B{percent:2.0%} '
+            format = ' [B]{percent:3.0%} '
         ),
         widget.CPU(
             font = font,
             foreground = colors.fg1,
             background = colors.bg2,
-            format = ' C{load_percent:3.0f}% '
+            format = ' [C]{load_percent:3.0f}% '
         ),
         widget.Memory(                   
             font = font,
             foreground = colors.fg1,
             background = colors.bg4,
             mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(terminal + ' -e htop')},
-            format = ' M{MemPercent:3.0f}% ',
+            format = ' [M]{MemPercent:3.0f}% ',
         ),
         widget.DF(
             font = font,
             foreground = colors.fg1,
             background = colors.bg2,
-            format = ' D {uf:.0f}{m} ',
+            format = ' [D] {uf:.0f}{m} ',
             visible_on_warn = False
         ),
         widget.CheckUpdates(
@@ -102,8 +102,8 @@ def create_widgets(font, colors, terminal):
             background = colors.bg4,
             update_interval = 1800,
             distro = "Arch_checkupdates",
-            display_format = " U {updates} ",
-            no_update_string = " 0 ",
+            display_format = " [U] {updates} ",
+            no_update_string = " [U] 0 ",
             colour_have_updates = colors.fg1,
             colour_no_updates = colors.fg1,
             mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(terminal + ' -e sudo pacman -Syu')}
