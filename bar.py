@@ -74,7 +74,7 @@ def create_widgets(font, colors, terminal):
         widget.Battery(
             foreground = colors.fg1,
             background = colors.bg4,
-            format = ' [B]{percent:3.0%} '
+            format = ' [B] {percent:3.0%} '
         ),
         widget.CPU(
             font = font,
