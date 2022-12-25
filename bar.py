@@ -1,4 +1,5 @@
 from libqtile import widget, qtile
+from libqtile.lazy import lazy
 
 
 def get_sep_line(font, colors):
@@ -67,26 +68,36 @@ def create_widgets(font, colors, terminal):
         widget.Net(
             font = font,
             foreground = colors.fg1,
-            background = colors.bg2,
+            background = colors.bg4,
             interface='wlo1',
-            format='{up} [UD] {down} '
+            format='{up} [UD] {down} ',
         ),
         widget.Battery(
             foreground = colors.fg1,
+            background = colors.bg2,
+            format = ' [B] {percent:3.0%} ',
+            show_short_text = False
+        ),
+        widget.PulseVolume(
+            font = font,
+            foreground = colors.fg1,
             background = colors.bg4,
-            format = ' [B] {percent:3.0%} '
+            device = "default",
+            fmt = ' [V] {} ',
+            volume_app = 'pavucontrol'
         ),
         widget.CPU(
             font = font,
             foreground = colors.fg1,
             background = colors.bg2,
+            mouse_callbacks = {'Button3': lambda: qtile.cmd_spawn(terminal + ' -e htop')},
             format = ' [C]{load_percent:3.0f}% '
         ),
         widget.Memory(                   
             font = font,
             foreground = colors.fg1,
             background = colors.bg4,
-            mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(terminal + ' -e htop')},
+            mouse_callbacks = {'Button3': lambda: qtile.cmd_spawn(terminal + ' -e htop')},
             format = ' [M]{MemPercent:3.0f}% ',
         ),
         widget.DF(
@@ -106,7 +117,7 @@ def create_widgets(font, colors, terminal):
             no_update_string = " [U] 0 ",
             colour_have_updates = colors.fg1,
             colour_no_updates = colors.fg1,
-            mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(terminal + ' -e sudo pacman -Syu')}
+            mouse_callbacks = {'Button3': lambda: qtile.cmd_spawn(terminal + ' -e sudo pacman -Syu')}
         ),
         widget.KeyboardLayout(
             font = font,
