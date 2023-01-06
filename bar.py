@@ -1,6 +1,8 @@
 from libqtile import widget, qtile
 from libqtile.lazy import lazy
 
+import os
+CONFIG_ID = int(os.environ.get("CONFIG_ID", 2)) # 1: notebook, 2: work pc
 
 def get_sep_line(font, colors):
     return widget.TextBox(
@@ -20,7 +22,7 @@ def create_widgets(font, colors, terminal):
         background = colors.bg0
     )
 
-    widgets = [
+    widgets_left = [
         widget.CurrentLayout(
             padding = 5,
             **general_kws
@@ -44,6 +46,9 @@ def create_widgets(font, colors, terminal):
             other_screen_border = colors.bg4,
             **general_kws
         ),
+    ]
+
+    widgets_center = [
         get_sep_line(font, colors),
         widget.WindowCount(
             padding = 2,
@@ -65,18 +70,16 @@ def create_widgets(font, colors, terminal):
             foreground = colors.bg0,
             background = colors.bg0
         ),
+    ]
+
+
+    widgets_right = [
         widget.Net(
             font = font,
             foreground = colors.fg1,
-            background = colors.bg4,
-            interface='wlo1',
+            background = colors.bg4 if CONFIG_ID == 1 else colors.bg2,
+            interface='wlo1' if CONFIG_ID == 1 else 'enp3s0',
             format='{up} [UD] {down} ',
-        ),
-        widget.Battery(
-            foreground = colors.fg1,
-            background = colors.bg2,
-            format = ' [B] {percent:3.0%} ',
-            show_short_text = False
         ),
         widget.PulseVolume(
             font = font,
@@ -134,4 +137,14 @@ def create_widgets(font, colors, terminal):
         )
     ]
 
-    return widgets
+    if CONFIG_ID == 1:
+        widgets_right.insert(1,
+            widget.Battery(
+                foreground = colors.fg1,
+                background = colors.bg2,
+                format = ' [B] {percent:3.0%} ',
+                show_short_text = False
+            )
+        )
+
+    return widgets_left + widgets_center + widgets_right
