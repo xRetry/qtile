@@ -29,13 +29,13 @@ def create_keys(mod, terminal, browser, groups):
         Key([mod, "control"], "k", lazy.layout.grow_up(), desc="Grow window up"),
         Key([mod, "shift"], "space", lazy.layout.normalize(), desc="Reset all window sizes"),
         ### Switch focus of monitors
-        Key([mod], "period",
-            lazy.next_screen(),
-            desc='Move focus to next monitor'
-        ),
         Key([mod], "comma",
+            lazy.next_screen(),
+            desc='Move focus to right monitor'
+        ),
+        Key([mod], "period",
             lazy.prev_screen(),
-            desc='Move focus to prev monitor'
+            desc='Move focus to left monitor'
         ),
                           
         # Toggle between split and unsplit sides of stack.

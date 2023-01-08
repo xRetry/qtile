@@ -4,6 +4,7 @@ from libqtile.lazy import lazy
 import os
 CONFIG_ID = int(os.environ.get("CONFIG_ID", 2)) # 1: notebook, 2: work pc
 
+
 def get_sep_line(font, colors):
     return widget.TextBox(
         text = '|',
