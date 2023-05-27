@@ -9,8 +9,8 @@ def create_keys(mod, terminal, browser, groups):
         # Key('A-S', lazy.widget["keyboardlayout"].next_keyboard(), desc="Next keyboard layout."),
         # Launch programs
         Key([mod], "return", lazy.spawn(terminal), desc="Launch terminal"),
-        Key([mod], "b", lazy.spawn(browser), desc="Launch browser"),
-        Key([mod], "f", lazy.spawn(terminal + " -e nnn"), desc="Launch file manager"),
+        Key([mod], "i", lazy.spawn(browser), desc="Launch browser"),
+        Key([mod], "u", lazy.spawn(terminal + " -e nnn"), desc="Launch file manager"),
         # Switch between windows
         Key([mod], "h", lazy.layout.left(), desc="Move focus to left"),
         Key([mod], "l", lazy.layout.right(), desc="Move focus to right"),
@@ -50,13 +50,14 @@ def create_keys(mod, terminal, browser, groups):
         ),
         # Toggle between different layouts as defined below
         Key([mod], "space", lazy.next_layout(), desc="Toggle between layouts"),
-        Key([mod], "c", lazy.window.kill(), desc="Kill focused window"),
+        Key([mod], "m", lazy.window.kill(), desc="Kill focused window"),
         Key([mod, "control"], "r", lazy.reload_config(), desc="Reload the config"),
         Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
-        Key([mod], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
+        Key([mod], "o", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
     ]
 
-    group_keys = ["a", "s", "d", "f", "g", "h", "j", "k", "l", ";"]
+    group_keys = ["w", "e", "r", "s", "d", "f", "z", "x", "c"]
+    #group_keys = [str(i) for i in range(1, 10)]
     for i, group in enumerate(groups):
         keys.extend(
             [
