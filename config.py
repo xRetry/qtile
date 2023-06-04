@@ -7,7 +7,7 @@ from keymaps import create_keys
 from bar import create_widgets
 
 
-terminal = "alacritty"
+terminal = "wezterm"
 browser = "firefox"
 mod = "mod4"
 font = "Hack Nerd Font Mono"
