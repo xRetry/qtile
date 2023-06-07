@@ -56,8 +56,8 @@ def create_keys(mod, terminal, browser, groups):
         Key([mod], "o", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
     ]
 
-    group_keys = ["w", "e", "r", "s", "d", "f", "z", "x", "c"]
-    #group_keys = [str(i) for i in range(1, 10)]
+    #group_keys = ["w", "e", "r", "s", "d", "f", "z", "x", "c"]
+    group_keys = [str(i) for i in range(1, 10)]
     for i, group in enumerate(groups):
         keys.extend(
             [
